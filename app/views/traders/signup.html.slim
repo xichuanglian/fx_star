@@ -1,0 +1,16 @@
+h1 Create Trader Account
+
+= form_for :trader, as: :post, url: trader_signup_path() do |f|
+  = f.label :username
+  = f.text_field :username
+  br
+  = f.label :password
+  = f.password_field :password
+  br
+  = f.label :confirm_password
+  = f.password_field :password
+  br
+  = f.label :email
+  = f.text_field :email
+  br
+  = f.submit 'Signup'

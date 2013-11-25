@@ -4,11 +4,11 @@ class FollowersController < ApplicationController
   def index
   end
 
-  def signup_page
+  def new
     render 'signup'
   end
 
-  def signup
+  def create
   end
 
   private

@@ -8,20 +8,32 @@ class TradersController < ApplicationController
   end
 
   def new
+    @trader = flash[:new_trader]
   end
 
   def create
     begin
-      p = params.require(:trader).hide_password!
-      unless valid_user_name p.require(:user_name)
+      p = params.require(:trader)
+      verify_user_name p[:user_name]
+      verify_unique_user_name p[:user_name]
+      verify_password p[:password], p[:password_confirmation]
+      verify_email p.require(:email)
+      if flash[:field_error]
+        flash[:new_trader] = Trader.new permit_params(p.except(:password, :password_confirmation))
+        redirect_to traders_new_path
+      else
+        @trader = Trader.create!(permit_params hide_password(p.except(:password_confimation)))
+        if @trader
+          session[:user] = @trader
+          redirect_to traders_index_path(@trader)
+        else
+          flash[:error] = "Database error. Can't create new trader."
+          redirect_to traders_new_path
+        end
       end
-      unless valid_password p.require(:password), p.require(:password_confirmation)
-      end
-      unless valid_email p.require(:email)
-      end
-      @trader = Trader.create!(permit_params hide_password)
     rescue ActionController::ParameterMissing
-      render status: :bad_request
+      flash[:error] = "You have to fill required fields!"
+      redirect_to traders_new_path
     end
   end
 
@@ -35,24 +47,41 @@ class TradersController < ApplicationController
   end
 
   def permit_params h
-    h.permit(:user_name, :password, :password_confirmation, :email)
+    h.permit(:user_name, :password, :email)
   end
 
-  def hide_password! h
-    h[:password] = Digest::MD5.hexdigest h.require(:password)
-    h[:password_confirmation] = Digest::MD5.hexdigest h.require(:password_confirmation)
+  def hide_password h
+    h[:password] = Digest::MD5.hexdigest h[:password]
+    #h[:password_confirmation] = Digest::MD5.hexdigest h[:password_confirmation]
+    return h
   end
 
-  def valid_user_name user_name
-    true
+  def verify_user_name user_name
+    unless Trader.user_name_format.match user_name
+      flash[:field_error] ||= Hash.new
+      flash[:field_error][:user_name] = "Invalid user name!"
+    end
   end
 
-  def valid_password password, password_confirmation
-    true
+  def verify_unique_user_name user_name
+    unless not Trader.where(name: user_name).exists?
+      flash[:field_error] ||= Hash.new
+      flash[:field_error][:user_name] = "User name occupied!"
+    end
   end
 
-  def valid_email email
-    true
+  def verify_password password, password_confirmation
+    unless password == password_confirmation
+      flash[:field_error] ||= Hash.new
+      flash[:field_error][:password] = "Passwords do not match!"
+    end
+  end
+
+  def verify_email email
+    unless Trader.email_format.match email
+      flash[:field_error] ||= Hash.new
+      flash[:field_error][:email] = "Invalid email!"
+    end
   end
 
 end

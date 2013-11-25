@@ -2,8 +2,8 @@ class SessionsController < ApplicationController
   def index
     if session[:user]
       @user = session[:user]
-      path = @user.class.to_s.downcase + "_index_path"
-      redirect_to self.send(path.to_sym)
+      path = @user.class.to_s.downcase + "s_index_path"
+      redirect_to self.send(path.to_sym, @user)
     end
   end
 

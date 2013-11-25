@@ -4,13 +4,13 @@ FxStar::Application.routes.draw do
   post 'login'  => 'sessions#login'
   get  'logout' => 'sessions#logout', as: :logout
 
-  get  '/follower/index' => 'followers#index', as: :follower_index
-  get  '/follower/signup' => 'followers#new', as: :follower_new
-  post '/follower/create' => 'followers#create', as: :follower_create
+  get  '/follower/index' => 'followers#index', as: :followers_index
+  get  '/follower/signup' => 'followers#new', as: :followers_new
+  post '/follower/create' => 'followers#create', as: :followers_create
 
-  get  '/trader/index' => 'traders#index', as: :trader_index
-  get  '/trader/signup' => 'traders#new', as: :trader_new
-  post '/trader/create' => 'traders#create', as: :trader_create
+  get  '/trader/index' => 'traders#index', as: :traders_index
+  get  '/trader/signup' => 'traders#new', as: :traders_new
+  post '/trader/create' => 'traders#create', as: :traders_create
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

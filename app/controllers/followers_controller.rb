@@ -5,7 +5,6 @@ class FollowersController < ApplicationController
   end
 
   def new
-    render 'signup'
   end
 
   def create

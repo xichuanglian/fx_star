@@ -1,8 +1,8 @@
 FxStar::Application.routes.draw do
   root 'sessions#index'
-  get  'login'  => 'sessions#login_page', as: :login
-  post 'login'  => 'sessions#login'
-  get  'logout' => 'sessions#logout', as: :logout
+  get  '/login'  => 'sessions#login_page', as: :login
+  post '/login'  => 'sessions#login'
+  get  '/logout' => 'sessions#logout', as: :logout
 
   get  '/followers/:id/index' => 'followers#index', as: :followers_index
   get  '/followers/signup' => 'followers#new', as: :followers_new

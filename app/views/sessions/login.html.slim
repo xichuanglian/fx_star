@@ -1,6 +1,10 @@
 h1 Please login
 
+- if flash[:error]
+  = flash[:error]
+
 == form_for :login do |f|
+  = f.hidden_field :user_type, value: :follower
   = f.label :username
   = f.text_field :username
   br

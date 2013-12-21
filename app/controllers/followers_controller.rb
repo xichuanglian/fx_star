@@ -15,7 +15,8 @@ class FollowersController < ApplicationController
       account_info = t.account.account_status_records.first
       @all_traders << {:user_name => t.user_name,
                        :equity => account_info.equity,
-                       :profit => account_info.profit}
+                       :profit => account_info.profit,
+                       :trader_id => t._id}
     end
     @all_traders.sort!{|t1, t2| t2[:profit] <=> t1[:profit]}
 

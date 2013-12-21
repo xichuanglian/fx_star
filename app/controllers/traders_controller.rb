@@ -39,6 +39,10 @@ class TradersController < ApplicationController
     end
   end
 
+  def show_for_follower
+    @trader = Trader.find(params[:trader_id])
+  end
+
   private
 
   def require_login

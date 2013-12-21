@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module ControllerModules
   module CreateUserModule
     private
@@ -10,28 +11,28 @@ module ControllerModules
     def verify_user_name user_name
       unless Trader.user_name_format.match user_name
         flash[:field_error] ||= Hash.new
-        flash[:field_error][:user_name] = "Invalid user name!"
+        flash[:field_error][:user_name] = "用户名格式错误"
       end
     end
 
     def verify_unique_user_name user_name
       unless not Trader.where(name: user_name).exists?
         flash[:field_error] ||= Hash.new
-        flash[:field_error][:user_name] = "User name occupied!"
+        flash[:field_error][:user_name] = "该用户名已经被注册了"
       end
     end
 
     def verify_password password, password_confirmation
       unless password == password_confirmation
         flash[:field_error] ||= Hash.new
-        flash[:field_error][:password] = "Passwords do not match!"
+        flash[:field_error][:password] = "两次输入的密码不同"
       end
     end
 
     def verify_email email
       unless Trader.email_format.match email
         flash[:field_error] ||= Hash.new
-        flash[:field_error][:email] = "Invalid email!"
+        flash[:field_error][:email] = "邮箱地址格式错误"
       end
     end
   end

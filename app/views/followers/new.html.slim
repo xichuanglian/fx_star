@@ -1,31 +1,35 @@
 div.maincontent
-  h1 Create Follower Account
+  h1 注册普通用户
   - if flash[:error]
     = flash[:error]
 
   = form_for :follower, as: :post, url: followers_create_path() do |f|
-    = f.label :user_name
+    = f.label :user_name, '用户名'
+    br
     - if flash[:field_error] && flash[:field_error][:user_name]
       = f.text_field :user_name
       = flash[:field_error][:user_name]
     - else
       = f.text_field :user_name
     br
-    = f.label :password
+    = f.label :password, '密码'
+    br
     - if flash[:field_error] && flash[:feild_error][:password]
       = f.password_field :password
       = flash[:feild_error][:password]
     - else
       = f.password_field :password
     br
-    = f.label :confirm_password
+    = f.label :confirm_password, '确认密码'
+    br
     = f.password_field :password_confirmation
     br
-    = f.label :email
+    = f.label :email, '邮箱'
+    br
     - if flash[:field_error] && flash[:field_error][:email]
       = f.text_field :email
       = flash[:field_error][:email]
     - else
       = f.text_field :email
     br
-    = f.submit 'Signup'
+    = f.submit '提交'

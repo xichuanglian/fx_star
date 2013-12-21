@@ -1,14 +1,17 @@
-h1 Please login
+div.maincontent
+  h1 请登陆
 
-- if flash[:error]
-  = flash[:error]
+  - if flash[:error]
+    = flash[:error]
 
-== form_for :login do |f|
-  = f.hidden_field :user_type, value: :follower
-  = f.label :username
-  = f.text_field :username
-  br
-  = f.label :password
-  = f.password_field :password
-  br
-  = f.submit :submit
+  == form_for :login do |f|
+    = f.hidden_field :user_type, value: :follower
+    = f.label :username, '用户名'
+    br
+    = f.text_field :username
+    br
+    = f.label :password, '密码'
+    br
+    = f.password_field :password
+    br
+    = f.submit '提交'

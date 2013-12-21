@@ -119,14 +119,12 @@ body{margin:0;padding:0}
     float:right;
 }
 .menu {
-
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 20px;
     padding-top:60px;
-
 }
 .menu ul {
-    width:390px;
+    width:auto;
     overflow:hidden;
     padding:9px 0 9px 0;
     position:relative;
@@ -145,6 +143,7 @@ body{margin:0;padding:0}
 .menu ul li:first-child {
     background:none;
 }
+
 .menu ul li a {
     float:left;
     text-decoration:none;

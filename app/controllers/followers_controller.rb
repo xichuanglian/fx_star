@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'controller_modules/create_user_module'
 
 class FollowersController < ApplicationController
@@ -28,12 +29,12 @@ class FollowersController < ApplicationController
           session[:user_info] = {:user_id => @follower.id, :user_type => Follower}
           redirect_to followers_index_path(@follower)
         else
-          flash[:error] = "Database error. Can't create new follower."
+          flash[:error] = "数据库错误，无法创建新账户！"
           redirect_to followers_new_path
         end
       end
     rescue ActionController::ParameterMissing
-      flash[:error] = "You have to fill required fields!"
+      flash[:error] = "注册信息必须填写完整！"
       redirect_to followers_new_path
     end
   end

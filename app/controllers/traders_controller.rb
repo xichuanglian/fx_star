@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'controller_modules/create_user_module'
 
 class TradersController < ApplicationController
@@ -27,12 +28,12 @@ class TradersController < ApplicationController
           session[:user_info] = {:user_id => @trader.id, :user_type => Trader}
           redirect_to traders_index_path(@trader)
         else
-          flash[:error] = "Database error. Can't create new trader."
+          flash[:error] = "数据库错误，无法创建账户！"
           redirect_to traders_new_path
         end
       end
     rescue ActionController::ParameterMissing
-      flash[:error] = "You have to fill required fields!"
+      flash[:error] = "注册信息必须填写完整！"
       redirect_to traders_new_path
     end
   end

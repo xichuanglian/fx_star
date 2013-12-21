@@ -80,11 +80,6 @@ class FollowersController < ApplicationController
     end
   end
 
-  def ranking_list
-
-
-  end
-
   private
 
   def require_login

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'digest/md5'
 
 class SessionsController < ApplicationController
@@ -25,7 +26,7 @@ class SessionsController < ApplicationController
       session[:user_info] = {:user_id => user.id, :user_type => model}
       redirect_to_user_page user
     else
-      flash[:error] = "Invalid username or password!"
+      flash[:error] = "用户名或密码错误！"
       redirect_to login_path
     end
   end

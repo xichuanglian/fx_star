@@ -4,14 +4,39 @@ div.maincontent
   - if flash[:error]
     = flash[:error]
 
-  == form_for :login do |f|
-    = f.hidden_field :user_type, value: :follower
-    = f.label :username, '用户名'
-    br
-    = f.text_field :username
-    br
-    = f.label :password, '密码'
-    br
-    = f.password_field :password
-    br
-    = f.submit '提交'
+  div#tabs
+    ul
+      li
+        = link_to '普通用户', '#tabs-1'
+      li
+        = link_to '策略提供者', '#tabs-2'
+    div#tabs-1
+      == form_for :login do |f|
+        = f.hidden_field :user_type, value: :follower
+        = f.label :username, '用户名'
+        br
+        = f.text_field :username
+        br
+        = f.label :password, '密码'
+        br
+        = f.password_field :password
+        br
+        = f.submit '提交'
+
+    div#tabs-2
+      == form_for :login do |f|
+        = f.hidden_field :user_type, value: :trader
+        = f.label :username, '用户名'
+        br
+        = f.text_field :username
+        br
+        = f.label :password, '密码'
+        br
+        = f.password_field :password
+        br
+        = f.submit '提交'
+
+javascript:
+  $(document).ready(function(){
+  $("#tabs").tabs();
+  });

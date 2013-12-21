@@ -4,6 +4,7 @@ require 'controller_modules/create_user_module'
 class TradersController < ApplicationController
   include ControllerModules::CreateUserModule
   before_action :require_login, only: [:index]
+  layout "trader"
 
   def index
   end

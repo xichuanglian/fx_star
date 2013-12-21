@@ -1,6 +1,6 @@
 div.page-content
   div.title
-    #{@user.user_name}
+    =@user.user_name
   div.content-body
     |
       Hello World!
@@ -29,8 +29,25 @@ br
 = link_to "设置"
 p
 
+p
+| 此处有头像
+br
+| 收益率：#{@my_profit_rate}
+br
+| 跟单时间：#{@my_follow_date}
+p
+
+p
+| 页面上栏信息
+br
+| 账户净值：#{@my_equity}
+br
+| 浮动盈亏：#{@my_profit}
+p
+
+p
 | 推荐高手 (共有
-  =@all_traders.count
+=@all_traders.count
 | 位策略提供者)
 
 table#recommend_list

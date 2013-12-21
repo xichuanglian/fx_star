@@ -1,44 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>汇星</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div class="main">
-  <div class="black"></div>
-  <div class="content">
-    <div class="height"></div>
-    <div class="header">
-      <div class="logo"></div>
-      <div class="nav">
-        <div class="menu">
-          <ul>
-            <li><a href="/">首页</a></li>
-            <li><a href="/">我的主页</a></li>
-            <li><a href="/">联系我们</a></li>
-            <li><a href="/logout">登出</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="mainmenu">
-      <ul>
-        <li><div>普通用户</div></li>
-        <li><%= link_to '历史记录', '/'%></li>
-        <li><%= link_to '排行榜', '/'%></li>
-        <li class="float-right"><%= link_to '设置', '/'%></li>
-      </ul>
-    </div>
-    <%= yield %>
-  </div>
-  <div class="mainfooter">
-  </div>
-  <div class="footermenu">
-    <div class="v">汇星 © 2010</div>
-  </div>
-</div>
-</body>
-</html>
+<% content_for :mainmenu do %>
+<ul>
+  <li><div>普通用户</div></li>
+  <li><%= link_to '历史记录', '/'%></li>
+  <li><%= link_to '排行榜', '/'%></li>
+  <li class="float-right"><%= link_to '设置', '/'%></li>
+</ul>
+<% end %>
+<%= render template: "layouts/application" %>

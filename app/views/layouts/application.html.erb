@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FxStar</title>
+  <title>汇星</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<div class="main">
+  <div class="black"></div>
+  <div class="content">
+    <div class="height"></div>
+    <div class="header">
+      <div class="logo"></div>
+      <div class="nav">
+        <div class="menu">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/">About</a></li>
+            <li><a href="/">Services</a></li>
+            <li><a href="/">Faq's</a></li>
+            <li><a href="/">Contacts</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mainmenu">
+      <ul>
+        <li><a href="/">find a business</a></li>
+        <li><a href="/">find a persone</a></li>
+      </ul>
+    </div>
+    <%= yield %>
+  </div>
+  <div class="mainfooter">
+  </div>
+</div>
+<div class="footermenu">
+  <div class="v">汇星 © 2010</div>
+</div>
 </body>
 </html>

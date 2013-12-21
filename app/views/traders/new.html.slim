@@ -1,30 +1,31 @@
-h1 Create Trader Account
-- if flash[:error]
-  = flash[:error]
+div.maincontent
+  h1 Create Trader Account
+  - if flash[:error]
+    = flash[:error]
 
-= form_for :trader, as: :post, url: traders_create_path() do |f|
-  = f.label :user_name
-  - if flash[:field_error] && flash[:field_error][:user_name]
-    = f.text_field :user_name
-    = flash[:field_error][:user_name]
-  - else
-    = f.text_field :user_name
-  br
-  = f.label :password
-  - if flash[:field_error] && flash[:field_error][:password]
-    = f.password_field :password
-    = flash[:field_error][:password]
-  - else
-    = f.password_field :password
-  br
-  = f.label :password_confirmation
-  = f.password_field :password_confirmation
-  br
-  = f.label :email
-  - if flash[:field_error] && flash[:field_error][:email]
-    = f.text_field :email
-    = flash[:field_error][:email]
-  - else
-    = f.text_field :email
-  br
-   = f.submit 'Signup'
+  = form_for :trader, as: :post, url: traders_create_path() do |f|
+    = f.label :user_name
+    - if flash[:field_error] && flash[:field_error][:user_name]
+      = f.text_field :user_name
+      = flash[:field_error][:user_name]
+    - else
+      = f.text_field :user_name
+    br
+    = f.label :password
+    - if flash[:field_error] && flash[:field_error][:password]
+      = f.password_field :password
+      = flash[:field_error][:password]
+    - else
+      = f.password_field :password
+    br
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    br
+    = f.label :email
+    - if flash[:field_error] && flash[:field_error][:email]
+      = f.text_field :email
+      = flash[:field_error][:email]
+    - else
+      = f.text_field :email
+    br
+     = f.submit 'Signup'

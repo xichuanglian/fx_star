@@ -167,15 +167,18 @@ body{margin:0;padding:0}
 }
 
 .mainmenu {
+    width: 980px;
+    height: 40px;
+    overflow:hidden;
     margin-left: auto;
     margin-right: auto;
+    background-image:url(main_menu_bg.jpg);
 }
 .mainmenu ul {
     width:940px;;
     overflow:hidden;
     font-family: 'swis721_btroman';
     position:relative;
-    background-image:url(main_menu_bg.jpg);
     list-style:none;
     font-size:16px;
     color:#000;
@@ -214,8 +217,10 @@ body{margin:0;padding:0}
     margin-right: auto;
 }
 .mainimg{
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 20px;
     padding-bottom: 20px;
     width:930px;
     height:334px;

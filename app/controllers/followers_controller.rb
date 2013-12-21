@@ -25,7 +25,7 @@ class FollowersController < ApplicationController
       else
         @follower = Follower.create!(permit_params hide_password(p.except(:password_confimation)))
         if @follower
-          session[:user] = @follower
+          session[:user_info] = {:user_id => @follower.id, :user_type => Follower}
           redirect_to followers_index_path(@follower)
         else
           flash[:error] = "Database error. Can't create new follower."
@@ -41,7 +41,7 @@ class FollowersController < ApplicationController
   private
 
   def require_login
-    @user = session[:user]
+    @user = Follower.find(session[:user_info][:user_id])
     if @user == nil || @user.class != Follower
       redirect_to root_path
     end

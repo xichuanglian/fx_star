@@ -20,9 +20,9 @@ class SessionsController < ApplicationController
     else
       render status: :bad_request
     end
-    user = model.verify login[:username], Digest::MD5.hexdigest(login[:password])
+    user = model.verify login[:username], Digest::MD5.hexdigest(login[:password]), model
     if user
-      session[:user] = user
+      session[:user_info] = {:user_id => user.id, :user_type => model}
       redirect_to_user_page user
     else
       flash[:error] = "Invalid username or password!"
@@ -38,13 +38,14 @@ class SessionsController < ApplicationController
   private
 
   def redirect_if_logged_in
-    if session[:user]
-      redirect_to_user_page session[:user]
+    if session[:user_info]
+      user = session[:user_info][:user_type].find(session[:user_info][:user_id])
+      redirect_to_user_page user
     end
   end
 
-  def redirect_to_user_page
-    path = @user.class.to_s.downcase + "s_index_path"
-    redirect_to self.send(path.to_sym, @user)
+  def redirect_to_user_page user
+    path = user.class.to_s.downcase + "s_index_path"
+    redirect_to self.send(path.to_sym, user)
   end
 end

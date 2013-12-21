@@ -1,6 +1,6 @@
 div.page-content
   div.title
-    #{@user.user_name}
+    =@user.user_name
   div.content-body
     |
       Hello World!
@@ -42,7 +42,7 @@ p
 
 p
 | 推荐高手 (共有
-  =@all_traders.count
+=@all_traders.count
 | 位策略提供者)
 
 table#recommend_list

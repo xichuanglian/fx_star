@@ -41,6 +41,10 @@ class FollowersController < ApplicationController
   private
 
   def require_login
+    if session[:user_info] == nil or session[:user_info][:user_id] == nil
+      redirect_to root_path
+      return
+    end
     @user = Follower.find(session[:user_info][:user_id])
     if @user == nil || @user.class != Follower
       redirect_to root_path

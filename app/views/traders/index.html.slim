@@ -1,2 +1,11 @@
-h1 = "Welcome #{@user.user_name}"
-= link_to "Logout", logout_path
+h1 #{@user.user_name}你好！
+= link_to "登出", logout_path
+p
+  = link_to "首页(目前登陆后首页的逻辑是跳转到本页)", root_path
+  br
+  = link_to "我的主页"
+  br
+  = link_to "排行榜"
+p
+
+| 交易记录

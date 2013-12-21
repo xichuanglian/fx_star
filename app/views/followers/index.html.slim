@@ -30,7 +30,7 @@ div.page-content
       tbody
         - @all_traders.each do |trader|
           tr
-            td= link_to "#{trader[:user_name]}"
+            td= link_to "#{trader[:user_name]}", traders_show_for_follower_path(:trader_id => trader[:trader_id])
             td= trader[:equity]
             td= trader[:profit]
             td= trader[:user_name]

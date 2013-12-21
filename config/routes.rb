@@ -14,7 +14,7 @@ FxStar::Application.routes.draw do
 
   #for follower
   get  '/followers/:id/ranking_list' => 'followers#ranking_list', as: :followers_ranking_list
-  post '/followers/:id/view_traders/:trader_id/create_followship' => 'followership#create', as: :followship_create
+  post '/followers/:id/view_traders/:trader_id/create_followship' => 'followships#create', as: :followships_create
 
   #for trader
   get  '/followers/:id/view_traders/:trader_id' => 'traders#show_for_follower', as: :traders_show_for_follower

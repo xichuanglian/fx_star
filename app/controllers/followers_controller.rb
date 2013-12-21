@@ -16,6 +16,7 @@ class FollowersController < ApplicationController
       verify_unique_user_name p[:user_name]
       verify_password p[:password], p[:password_confirmation]
       verify_email p.require(:email)
+      # verify_something will set flash[:field_error] if something is not valid
       if flash[:field_error]
         flash[:new_follower] = Follower.new permit_params(p.except(:password, :password_confirmation))
         redirect_to followers_new_path

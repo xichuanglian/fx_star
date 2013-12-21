@@ -1,7 +1,3 @@
-require 'model_modules/user_module'
-
-class Follower
-  include Mongoid::Document
-  include ModelModules::UserModule
+class Follower < User
   has_many :followships
 end

@@ -1,7 +1,3 @@
-require 'model_modules/user_module'
-
-class Trader
-  include Mongoid::Document
-  include ModelModules::UserModule
+class Trader < User
   has_many :followships
 end

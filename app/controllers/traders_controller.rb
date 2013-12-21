@@ -1,5 +1,4 @@
-require 'ruby-debug'
-require 'digest/md5'
+require 'controller_modules/create_user_module'
 
 class TradersController < ApplicationController
   include ControllerModules::CreateUserModule

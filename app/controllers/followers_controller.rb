@@ -1,3 +1,5 @@
+require 'controller_modules/create_user_module'
+
 class FollowersController < ApplicationController
   include ControllerModules::CreateUserModule
   before_action :require_login, only: [:index]

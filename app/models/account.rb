@@ -6,6 +6,8 @@ class Account
   field :balance, type: Float
   field :real, type: Boolean
 
-  embeded_in :accountable, polymorphic: true
+
+  embedded_in :accountable, polymorphic: true
   has_many :trade_records
+  has_many :account_status_records
 end

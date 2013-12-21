@@ -1,3 +1,4 @@
+#require 'ruby-debug'
 require 'digest/md5'
 
 class SessionsController < ApplicationController

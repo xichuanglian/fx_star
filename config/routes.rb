@@ -11,6 +11,10 @@ FxStar::Application.routes.draw do
   get  '/traders/:id/index' => 'traders#index', as: :traders_index
   get  '/traders/signup' => 'traders#new', as: :traders_new
   post '/traders/create' => 'traders#create', as: :traders_create
+
+  #for follower
+  get  '/followers/:id/ranking_list' => 'followers#ranking_list', as: :followers_ranking_list
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

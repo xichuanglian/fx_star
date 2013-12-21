@@ -6,6 +6,13 @@ class FollowersController < ApplicationController
   before_action :require_login, only: [:index]
 
   def index
+    @all_traders = []
+    Trader.each do |t|
+      account_info = t.account.account_status_records.first
+      @all_traders << {:user_name => t.user_name,
+                       :equity => account_info.equity,
+                       :profit => account_info.profit}
+    end
   end
 
   def new
@@ -37,6 +44,11 @@ class FollowersController < ApplicationController
       flash[:error] = "注册信息必须填写完整！"
       redirect_to followers_new_path
     end
+  end
+
+  def ranking_list
+
+
   end
 
   private

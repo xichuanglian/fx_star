@@ -43,6 +43,17 @@ class TradersController < ApplicationController
     @trader = Trader.find(params[:trader_id])
   end
 
+  def ranking_list
+    @traders = []
+    Trader.each do |t|
+      next unless t.account
+      account_info = t.account.account_status_records.first
+      @traders << {:user_name => t.user_name,
+        :profit => account_info.profit}
+    end
+    @traders.sort! {|t1, t2| t2[:profit] <=> t1[:profit]}
+  end
+
   private
 
   def require_login

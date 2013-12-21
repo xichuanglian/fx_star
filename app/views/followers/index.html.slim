@@ -1,25 +1,33 @@
+div.page-content
+  div.title
+    #{@user.user_name}
+  div.content-body
+    |
+      Hello World!
+
 h1 #{@user.user_name}你好！
 = link_to "登出", logout_path
 p
-  = link_to "首页(目前登陆后首页的逻辑是跳转到本页)", root_path
-  br
-  = link_to "我的主页"
-  br
-  = link_to "排行榜", followers_ranking_list_path
+= link_to "首页(目前登陆后首页的逻辑是跳转到本页)", root_path
+br
+= link_to "我的主页"
+br
+= link_to "排行榜", followers_ranking_list_path
 p
 
 
 p
-  = link_to "跟随者"
-  br
-  = link_to "历史记录"
-  br
-  = link_to "设置"
+= link_to "跟随者"
+br
+= link_to "历史记录"
+br
+= link_to "设置"
 p
 
 | 推荐高手 (共有
-=@all_traders.count
+  =@all_traders.count
 | 位策略提供者)
+
 table#recommend_list
   thead
     tr
@@ -27,10 +35,10 @@ table#recommend_list
       th 账户净值
       th 浮动盈亏
       th 还需要啥？
-  tbody
-    - @all_traders.each do |trader|
-      tr
-        td= link_to "#{trader[:user_name]}"
-        td= trader[:equity]
-        td= trader[:profit]
-        td= trader[:user_name]
+    tbody
+      - @all_traders.each do |trader|
+        tr
+          td= link_to "#{trader[:user_name]}"
+          td= trader[:equity]
+          td= trader[:profit]
+          td= trader[:user_name]

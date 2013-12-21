@@ -9,6 +9,7 @@ class FollowersController < ApplicationController
   def index
     @all_traders = []
     Trader.each do |t|
+      next unless t.account
       account_info = t.account.account_status_records.first
       @all_traders << {:user_name => t.user_name,
                        :equity => account_info.equity,

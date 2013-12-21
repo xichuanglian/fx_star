@@ -22,16 +22,19 @@ class FollowersController < ApplicationController
 
     # 页面左栏信息
     who_am_i = Follower.find session[:user_info][:user_id]
-    my_account_info = who_am_i.account.account_status_records.first
-    @my_follow_date = '需要计算'
-    @my_profit_rate = '需要计算'
-
-    # 页面上栏信息
-    @my_equity = my_account_info.equity
-    @my_profit = my_account_info.profit
-
-
-
+    if who_am_i.account
+      my_account_info = who_am_i.account.account_status_records.first
+      @my_follow_date = '需要计算'
+      @my_profit_rate = '需要计算'
+      # 页面上栏信息
+      @my_equity = my_account_info.equity
+      @my_profit = my_account_info.profit
+    else
+      @my_profit_rate = '暂无数据'
+      @my_follow_date = '暂无数据'
+      @my_equity = '暂无数据'
+      @my_profit = '暂无数据'
+    end
   end
 
   def new

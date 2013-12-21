@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#require 'ruby-debug'
 require 'controller_modules/create_user_module'
 
 class FollowersController < ApplicationController
@@ -7,6 +8,7 @@ class FollowersController < ApplicationController
   layout 'follower'
 
   def index
+    # 推荐高手
     @all_traders = []
     Trader.each do |t|
       account_info = t.account.account_status_records.first
@@ -14,6 +16,20 @@ class FollowersController < ApplicationController
                        :equity => account_info.equity,
                        :profit => account_info.profit}
     end
+    @all_traders.sort!{|t1, t2| t2[:profit] <=> t1[:profit]}
+
+    # 页面左栏信息
+    who_am_i = Follower.find session[:user_info][:user_id]
+    my_account_info = who_am_i.account.account_status_records.first
+    @my_follow_date = '需要计算'
+    @my_profit_rate = '需要计算'
+
+    # 页面上栏信息
+    @my_equity = my_account_info.equity
+    @my_profit = my_account_info.profit
+
+
+
   end
 
   def new

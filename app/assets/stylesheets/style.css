@@ -266,8 +266,13 @@ body{margin:0;padding:0}
     margin: 20px 0 20px 0;
 }
 .page-content .title {
-    width: 60px;
+    width: 920px;
     height: auto;
+    padding: 8px 8px 8px 0px;
+    background-color: #ffffff;
+}
+
+.page-content .title span {
     background-color:#fdec37;
     padding: 9px 9px 9px 9px;
 }
@@ -277,6 +282,11 @@ body{margin:0;padding:0}
     height: auto;
     padding: 9px 9px 9px 9px;
     background-color:#fefe90;
+    clear: both;
+}
+
+.page-content .text {
+    clear: none;
 }
 
 .page-content .figure {
@@ -287,6 +297,10 @@ body{margin:0;padding:0}
     padding: 10px 10px 10px 10px;
     display: inline;
     background-color:#fdec37;
+}
+
+.clear {
+    clear: both;
 }
 
 .title{

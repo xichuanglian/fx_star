@@ -1,66 +1,35 @@
 div.page-content
   div.title
-    =@user.user_name
+    span
+      =@user.user_name
   div.content-body
-    |
-      Hello World!
     div.figure
-
+      | 收益率：#{@my_profit_rate}
     div.figure
-
+      | 账户净值：#{@my_equity}
     div.figure
+      | 浮动盈亏：#{@my_profit}
+    div.text
+      h3 #{@user.user_name}你好！
+      | 跟单时间：#{@my_follow_date}
+    div.clear
 
-h1 #{@user.user_name}你好！
-= link_to "登出", logout_path
-p
-= link_to "首页(目前登陆后首页的逻辑是跳转到本页)", root_path
-br
-= link_to "我的主页"
-br
-= link_to "排行榜", followers_ranking_list_path
-p
-
-
-p
-= link_to "跟随者"
-br
-= link_to "历史记录"
-br
-= link_to "设置"
-p
-
-p
-| 此处有头像
-br
-| 收益率：#{@my_profit_rate}
-br
-| 跟单时间：#{@my_follow_date}
-p
-
-p
-| 页面上栏信息
-br
-| 账户净值：#{@my_equity}
-br
-| 浮动盈亏：#{@my_profit}
-p
-
-p
-| 推荐高手 (共有
-=@all_traders.count
-| 位策略提供者)
-
-table#recommend_list
-  thead
-    tr
-      th 用户名
-      th 账户净值
-      th 浮动盈亏
-      th 还需要啥？
-  tbody
-    - @all_traders.each do |trader|
-      tr
-        td= link_to "#{trader[:user_name]}"
-        td= trader[:equity]
-        td= trader[:profit]
-        td= trader[:user_name]
+div.page-content
+  div.title
+    span
+      | 推荐高手
+  div.content-body
+    table#recommend_list
+      thead
+        tr
+          th 用户名
+          th 账户净值
+          th 浮动盈亏
+          th 还需要啥？
+      tbody
+        - @all_traders.each do |trader|
+          tr
+            td= link_to "#{trader[:user_name]}"
+            td= trader[:equity]
+            td= trader[:profit]
+            td= trader[:user_name]

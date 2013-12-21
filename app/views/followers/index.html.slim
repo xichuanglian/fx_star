@@ -4,6 +4,11 @@ div.page-content
   div.content-body
     |
       Hello World!
+    div.figure
+
+    div.figure
+
+    div.figure
 
 h1 #{@user.user_name}你好！
 = link_to "登出", logout_path
@@ -35,10 +40,10 @@ table#recommend_list
       th 账户净值
       th 浮动盈亏
       th 还需要啥？
-    tbody
-      - @all_traders.each do |trader|
-        tr
-          td= link_to "#{trader[:user_name]}"
-          td= trader[:equity]
-          td= trader[:profit]
-          td= trader[:user_name]
+  tbody
+    - @all_traders.each do |trader|
+      tr
+        td= link_to "#{trader[:user_name]}"
+        td= trader[:equity]
+        td= trader[:profit]
+        td= trader[:user_name]

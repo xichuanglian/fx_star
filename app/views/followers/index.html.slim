@@ -4,14 +4,21 @@ div.page-content
       =@user.user_name
   div.content-body
     div.figure
-      | 收益率：#{@my_profit_rate}
+      | 收益：#{@my_gain}
     div.figure
       | 账户净值：#{@my_equity}
     div.figure
       | 浮动盈亏：#{@my_profit}
     div.text
       h3 #{@user.user_name}你好！
-      | 跟单时间：#{@my_follow_date}
+      | 收益率：#{@my_profit_rate}
+      - if @trader
+        br
+        | 你跟随了：#{@trader.user_name}
+        br
+        | 跟单时间：#{@trader.created_time}
+
+
     div.clear
 
 

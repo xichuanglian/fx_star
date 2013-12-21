@@ -8,6 +8,16 @@ class FollowersController < ApplicationController
   layout 'follower'
 
   def index
+    my_id = session[:user_info][:user_id]
+    # 是否已跟单
+    if Followship.where(:follower_id => my_id).exists?
+      @followship = Followship.where(:follower_id => my_id).first
+      trader_id = @followship.trader_id
+      @trader = Trader.find(trader_id)
+
+    end
+
+
     # 推荐高手
     @all_traders = []
     Trader.each do |t|
@@ -21,17 +31,19 @@ class FollowersController < ApplicationController
     @all_traders.sort!{|t1, t2| t2[:profit] <=> t1[:profit]}
 
     # 页面左栏信息
-    who_am_i = Follower.find session[:user_info][:user_id]
+    who_am_i = Follower.find my_id
     if who_am_i.account
       my_account_info = who_am_i.account.account_status_records.first
       @my_follow_date = '需要计算'
       @my_profit_rate = '需要计算'
       # 页面上栏信息
+      @my_gain = '需要计算'
       @my_equity = my_account_info.equity
       @my_profit = my_account_info.profit
     else
       @my_profit_rate = '暂无数据'
       @my_follow_date = '暂无数据'
+      @my_gain = '暂无数据'
       @my_equity = '暂无数据'
       @my_profit = '暂无数据'
     end

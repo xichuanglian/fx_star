@@ -17,3 +17,5 @@
 
 # Ignore all backup files
 *~
+
+.idea/*

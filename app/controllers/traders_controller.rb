@@ -24,7 +24,7 @@ class TradersController < ApplicationController
       else
         @trader = Trader.create!(permit_params hide_password(p.except(:password_confimation)))
         if @trader
-          session[:user] = @trader
+          session[:user_info] = {:user_id => @trader.id, :user_type => Trader}
           redirect_to traders_index_path(@trader)
         else
           flash[:error] = "Database error. Can't create new trader."
@@ -40,7 +40,7 @@ class TradersController < ApplicationController
   private
 
   def require_login
-    @user = session[:user]
+    @user = Trader.find(session[:user_info][:user_id])
     if @user == nil || @user.class != Trader
       redirect_to root_path
     end

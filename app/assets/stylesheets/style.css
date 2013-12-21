@@ -126,18 +126,19 @@ body{margin:0;padding:0}
 .menu ul {
     width:auto;
     overflow:hidden;
-    padding:9px 0 9px 0;
+    display:inline-block;
+    padding:0px 0 9px 0;
     position:relative;
     list-style:none;
     font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
+    font-size:21px;
     color:#000;
 }
 .menu ul li {
     float:left;
     padding:0 10px 0 10px;
     font-family:"Times New Roman", Times, serif;
-    font-size:18px;
+    font-size:21px;
     color:#383832;
 }
 .menu ul li:first-child {
@@ -147,16 +148,17 @@ body{margin:0;padding:0}
 .menu ul li a {
     float:left;
     text-decoration:none;
-    padding:9px 0 9px 0;
+    padding:0 0 9px 0;
     font-family:"Times New Roman", Times, serif;
-    font-size:18px;
+    font-size:21px;
     color:#383832;
 }
+
 .menu ul li a:hover {
     text-decoration:none;
     color:#FC0;
     overflow:hidden;
-    padding:9px 0 9px 0;
+    padding:0 0 9px 0;
     position:relative;
 }
 .menucenter{
@@ -167,14 +169,15 @@ body{margin:0;padding:0}
 
 .mainmenu {
     width: 980px;
-    height: 40px;
+    height: 60px;
     overflow:hidden;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 0;
     background-image:url(main_menu_bg.jpg);
 }
 .mainmenu ul {
-    width:940px;;
+    width:940px;
     overflow:hidden;
     font-family: 'swis721_btroman';
     position:relative;
@@ -186,12 +189,23 @@ body{margin:0;padding:0}
     float:left;
     text-transform:uppercase;
     font-family: 'swis721_btroman';
-    padding:0 20px 0 20px;
     font-size:16px;
+    padding: 0 10px 0 10px;
     color:#000;
 }
 .mainmenu ul li:first-child {
     background:none;
+}
+.mainmenu ul li div {
+    padding: 9px 9px 9px 9px;
+    text-transform:uppercase;
+    font-family: 'swis721_btroman';
+    font-size:16px;
+    font-weight:bold;
+}
+.mainmenu ul li.float-right {
+    float:right;
+    padding-right:40px;
 }
 .mainmenu ul li a {
     float:left;

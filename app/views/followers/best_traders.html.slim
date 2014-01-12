@@ -1,0 +1,6 @@
+div.page-content
+  div.title
+    span
+      | 排行榜
+  div.content-body
+    = render 'traders/best_traders', locals: {best_traders: @best_traders, user: @user}

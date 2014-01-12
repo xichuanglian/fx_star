@@ -4,7 +4,7 @@ require 'controller_modules/create_user_module'
 
 class FollowersController < ApplicationController
   include ControllerModules::CreateUserModule
-  before_action :require_login, only: [:index]
+  before_action :require_login, only: [:index, :best_traders]
   layout 'follower'
 
   def index
@@ -19,16 +19,7 @@ class FollowersController < ApplicationController
 
 
     # 推荐高手
-    @all_traders = []
-    Trader.each do |t|
-      next unless t.account
-      account_info = t.account.account_status_records.first
-      @all_traders << {:user_name => t.user_name,
-                       :equity => account_info.equity,
-                       :profit => account_info.profit,
-                       :trader_id => t._id}
-    end
-    @all_traders.sort!{|t1, t2| t2[:profit] <=> t1[:profit]}
+    @best_traders = Trader.best_traders
 
     # 页面左栏信息
     who_am_i = Follower.find my_id
@@ -78,6 +69,10 @@ class FollowersController < ApplicationController
       flash[:error] = "注册信息必须填写完整！"
       redirect_to followers_new_path
     end
+  end
+
+  def best_traders
+    @best_traders = Trader.best_traders
   end
 
   private

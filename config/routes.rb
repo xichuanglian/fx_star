@@ -6,6 +6,7 @@ FxStar::Application.routes.draw do
 
   get  '/followers/:id/index' => 'followers#index', as: :followers_index
   get  '/followers/signup' => 'followers#new', as: :followers_new
+  get  '/followers/best_traders' => 'followers#best_traders', as: :followers_best_traders
   post '/followers/create' => 'followers#create', as: :followers_create
 
   get  '/traders/:id/index' => 'traders#index', as: :traders_index
@@ -16,7 +17,6 @@ FxStar::Application.routes.draw do
   post '/followers/:id/view_traders/:trader_id/create_followship' => 'followships#create', as: :followships_create
 
   #for trader
-  get  '/traders/ranking_list' => 'traders#ranking_list', as: :traders_ranking_list
   get  '/followers/:id/view_traders/:trader_id' => 'traders#show_for_follower', as: :traders_show_for_follower
 
   # The priority is based upon order of creation: first created -> highest priority.

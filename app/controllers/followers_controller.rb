@@ -75,6 +75,13 @@ class FollowersController < ApplicationController
     @best_traders = Trader.best_traders
   end
 
+
+  def settings
+
+
+
+  end
+
   private
 
   def require_login

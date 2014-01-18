@@ -3,6 +3,7 @@ class Trader < User
 
   def self.best_traders
     @best_traders = []
+
     self.each do |t|
       next unless t.account
       account_info = t.account.account_status_records.first

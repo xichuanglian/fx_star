@@ -1,0 +1,37 @@
+div.page-content
+  div.title
+    span
+      | 账户设置
+  div.content-body
+    span
+      | 修改密码
+    == form_for :modify_password do |f|
+      = f.hidden_field :user_type, value: :follower
+      = f.label :original_password, '原始密码'
+      br
+      = f.text_field :original_password
+      br
+      = f.label :new_password, '新密码'
+      br
+      = f.password_field :new_password
+      br
+      = f.label :confirm_password, '确认新密码'
+      br
+      = f.password_field :confirm_password
+      br
+      = f.submit '提交'
+
+  div.content-body
+    span
+      | 绑定交易账户
+    == form_for :trade_account_bind do |f|
+      = f.hidden_field :user_type, value: :follower
+      = f.label :trade_account, '交易账户名'
+      br
+      = f.password_field :trade_account
+      br
+      = f.label :trade_password, '交易账户密码'
+      br
+      = f.password_field :trade_password
+      br
+      = f.submit '提交'

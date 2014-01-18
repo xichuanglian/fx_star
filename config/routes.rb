@@ -8,6 +8,7 @@ FxStar::Application.routes.draw do
   get  '/followers/signup' => 'followers#new', as: :followers_new
   get  '/followers/best_traders' => 'followers#best_traders', as: :followers_best_traders
   post '/followers/create' => 'followers#create', as: :followers_create
+  get  '/followers/settings' => 'followers#settings', as: :followers_settings
 
   get  '/traders/:id/index' => 'traders#index', as: :traders_index
   get  '/traders/signup' => 'traders#new', as: :traders_new

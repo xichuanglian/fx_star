@@ -5,21 +5,22 @@ div.page-content
   div.content-body
     span
       | 修改密码
-    == form_for :modify_password do |f|
-      = f.hidden_field :user_type, value: :follower
-      = f.label :original_password, '原始密码'
+    == form_tag url_for(:controller => 'followers', :action => 'modify_password', :id => @my_id), method: 'post' do
+      = hidden_field_tag :user_type, value: :follower
       br
-      = f.text_field :original_password
+      = label_tag :original_password, '原始密码'
       br
-      = f.label :new_password, '新密码'
+      = text_field_tag :original_password
       br
-      = f.password_field :new_password
+      = label_tag :original_password, '新密码'
       br
-      = f.label :confirm_password, '确认新密码'
+      = text_field_tag :original_password
       br
-      = f.password_field :confirm_password
+      = label_tag :original_password, '确认新密码'
       br
-      = f.submit '提交'
+      = text_field_tag :original_password
+      br
+      = submit_tag "确认修改密码"
 
   div.content-body
     span

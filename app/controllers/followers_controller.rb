@@ -8,10 +8,11 @@ class FollowersController < ApplicationController
   layout 'follower'
 
   def index
-    my_id = session[:user_info][:user_id]
+    @my_id = session[:user_info][:user_id]
+
     # 是否已跟单
-    if Followship.where(:follower_id => my_id).exists?
-      @followship = Followship.where(:follower_id => my_id).first
+    if Followship.where(:follower_id => @my_id).exists?
+      @followship = Followship.where(:follower_id => @my_id).first
       trader_id = @followship.trader_id
       @trader = Trader.find(trader_id)
 
@@ -22,7 +23,7 @@ class FollowersController < ApplicationController
     @best_traders = Trader.best_traders
 
     # 页面左栏信息
-    who_am_i = Follower.find my_id
+    who_am_i = Follower.find @my_id
     if who_am_i.account
       my_account_info = who_am_i.account.account_status_records.first
       @my_follow_date = '需要计算'
@@ -76,11 +77,15 @@ class FollowersController < ApplicationController
   end
 
 
-  def settings
-
-
-
+  def settings_page
+    @my_id = session[:user_info][:user_id]
+    render 'settings'
   end
+
+  def modify_settings
+    debugger
+  end
+
 
   private
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#require 'ruby-debug'
+require 'ruby-debug'
 require 'controller_modules/create_user_module'
 
 class FollowersController < ApplicationController

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+require 'ruby-debug'
 require 'controller_modules/create_user_module'
 
 class TradersController < ApplicationController
@@ -7,6 +8,28 @@ class TradersController < ApplicationController
   layout "trader"
 
   def index
+    my_id = session[:user_info][:user_id]
+
+    # 页面左栏信息
+    @number_follow_me = Followship.where(:trader_id => my_id).count
+    #debugger
+
+    who_am_i = Trader.find my_id
+    if who_am_i.account
+      my_account_info = who_am_i.account.account_status_records.first
+      @my_follow_date = '需要计算'
+      @my_profit_rate = '需要计算'
+      # 页面上栏信息
+      @my_gain = '需要计算'
+      @my_equity = my_account_info.equity
+      @my_profit = my_account_info.profit
+    else
+      @my_profit_rate = '暂无数据'
+      @my_follow_date = '暂无数据'
+      @my_gain = '暂无数据'
+      @my_equity = '暂无数据'
+      @my_profit = '暂无数据'
+    end
   end
 
   def new

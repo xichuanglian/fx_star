@@ -4,10 +4,22 @@ div.page-content
       =@user.user_name
   div.content-body
     div.figure
+      | 收益：
+      br
+      | #{@my_gain}
     div.figure
+      | 账户净值：
+      br
+      | #{@my_equity}
     div.figure
+      | 浮动盈亏：
+      br
+      | #{@my_profit}
     div.text
       h3 #{@user.user_name} 你好！
+      | 收益率：#{@my_profit_rate}
+      br
+      | 跟单人数：#{@number_follow_me}
     div.clear
 
 div.page-content

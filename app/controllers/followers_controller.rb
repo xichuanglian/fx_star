@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-require 'ruby-debug'
 require 'controller_modules/create_user_module'
 
 class FollowersController < ApplicationController
   include ControllerModules::CreateUserModule
-  before_action :require_login, only: [:index, :best_traders]
+  before_action :require_login, only: [:index, :best_traders, :settings,
+                                       :modify_password, :bind_account]
   layout 'follower'
 
   def index
@@ -15,7 +15,6 @@ class FollowersController < ApplicationController
       @followship = Followship.where(:follower_id => @my_id).first
       trader_id = @followship.trader_id
       @trader = Trader.find(trader_id)
-
     end
 
 
@@ -49,7 +48,7 @@ class FollowersController < ApplicationController
     begin
       p = params.require(:follower)
       verify_user_name p[:user_name]
-      verify_unique_user_name p[:user_name]
+      verify_unique_user_name p[:user_name], Follower
       verify_password p[:password], p[:password_confirmation]
       verify_email p.require(:email)
       # verify_something will set flash[:field_error] if something is not valid
@@ -76,14 +75,38 @@ class FollowersController < ApplicationController
     @best_traders = Trader.best_traders
   end
 
-
-  def settings_page
+  def settings
     @my_id = session[:user_info][:user_id]
-    render 'settings'
   end
 
-  def modify_settings
-    debugger
+  def modify_password
+    unless Follower.verify(@user.user_name,
+                           Digest::MD5.hexdigest(params[:password][:original]),
+                           Follower)
+      flash[:field_error] ||= Hash.new
+      flash[:field_error][:original] = "原始密码错误！"
+    else
+      verify_password params[:password][:password], params[:password][:confirmation]
+    end
+
+    unless flash[:field_error]
+      @user.password = Digest::MD5.hexdigest params[:password][:password]
+      @user.save!
+    end
+    redirect_to followers_settings_page_path(@user)
+  end
+
+  def bind_account
+    account = @user.account
+    unless account
+      account = Account.new
+      @user.account = account
+      @user.save!
+    end
+    account.account_number = params[:trade_account][:account]
+    account.password = params[:trade_account][:password]
+    account.save!
+    redirect_to followers_settings_page_path(@user)
   end
 
 

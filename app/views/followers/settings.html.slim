@@ -1,38 +1,41 @@
 div.page-content
   div.title
     span
-      | 账户设置
-  div.content-body
-    span
       | 修改密码
-    == form_tag url_for(:controller => 'followers', :action => 'modify_password', :id => @my_id), method: 'post' do
+  div.content-body
+    == form_tag followers_modify_password_path(@user), method: 'post' do
       = hidden_field_tag :user_type, value: :follower
       br
-      = label_tag :original_password, '原始密码'
+      = label :password, '原始密码'
       br
-      = text_field_tag :original_password
+      = password_field :password, :original
+      - if flash[:field_error]
+        = flash[:field_error][:original]
       br
-      = label_tag :original_password, '新密码'
+      = label :password, '新密码'
       br
-      = text_field_tag :original_password
+      = password_field :password, :password
+      - if flash[:field_error]
+        = flash[:field_error][:password]
       br
-      = label_tag :original_password, '确认新密码'
+      = label :password, '确认新密码'
       br
-      = text_field_tag :original_password
+      = password_field :password, :confirmation
       br
       = submit_tag "确认修改密码"
 
-  div.content-body
+  div.title
     span
       | 绑定交易账户
-    == form_for :trade_account_bind do |f|
-      = f.hidden_field :user_type, value: :follower
-      = f.label :trade_account, '交易账户名'
+  div.content-body
+    == form_tag followers_bind_account_path(@user), method: 'post' do
+      = hidden_field_tag :user_type, value: :follower
+      = label :trade_account, '交易账户名'
       br
-      = f.password_field :trade_account
+      = text_field :trade_account, :account
       br
-      = f.label :trade_password, '交易账户密码'
+      = label :trade_password, '交易账户密码'
       br
-      = f.password_field :trade_password
+      = password_field :trade_account, :password
       br
-      = f.submit '提交'
+      = submit_tag '提交'

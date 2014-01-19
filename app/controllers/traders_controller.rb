@@ -40,7 +40,7 @@ class TradersController < ApplicationController
     begin
       p = params.require(:trader)
       verify_user_name p[:user_name]
-      verify_unique_user_name p[:user_name]
+      verify_unique_user_name p[:user_name], Trader
       verify_password p[:password], p[:password_confirmation]
       verify_email p.require(:email)
       if flash[:field_error]

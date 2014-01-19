@@ -4,7 +4,7 @@
   <li><%= link_to '跟单情况', '/'%></li>
   <li><%= link_to '历史记录', '/'%></li>
   <li><%= link_to '排行榜', followers_best_traders_path%></li>
-  <li class="float-right"><%= link_to '设置', followers_settings_page_path %></li>
+  <li class="float-right"><%= link_to '设置', followers_settings_page_path(@user) %></li>
 </ul>
 <% end %>
 <%= render template: "layouts/application" %>

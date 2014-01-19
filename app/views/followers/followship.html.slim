@@ -1,0 +1,17 @@
+div.page-content
+  div.title
+    span
+      | 跟单情况
+  div.content-body
+    table
+      thead
+        tr
+          th 策略提供者
+          th 比例
+          th 时间
+      tbody
+        - @followships.each do |f|
+          tr
+            th= f[:trader]
+            th= f[:percentage]
+            th= f[:since]

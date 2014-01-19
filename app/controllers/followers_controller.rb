@@ -4,7 +4,8 @@ require 'controller_modules/create_user_module'
 class FollowersController < ApplicationController
   include ControllerModules::CreateUserModule
   before_action :require_login, only: [:index, :best_traders, :settings,
-                                       :modify_password, :bind_account]
+                                       :modify_password, :bind_account,
+                                       :history, :followship]
   layout 'follower'
 
   def index
@@ -109,6 +110,25 @@ class FollowersController < ApplicationController
     redirect_to followers_settings_page_path(@user)
   end
 
+  def history
+    unless @user.account
+      flash[:error] = "您尚未绑定券商账户！"
+      @records = []
+    else
+      @records = @user.account.trade_records
+    end
+  end
+
+  def followship
+    @followships = []
+    @user.followships.each do |f|
+      @followships << {
+        :trader => f.trader.user_name,
+        :percentage => f.percentage,
+        :since => f.since
+      }
+    end
+  end
 
   private
 

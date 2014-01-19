@@ -1,0 +1,22 @@
+div.page-content
+  div.title
+    span
+      | 交易历史
+  div.content-body
+    = flash[:error]
+    table
+      thead
+        tr
+          th 时间
+          th 货币
+          th 价格
+          th 数量
+          th 操作
+      tbody
+        - @records.each do |h|
+          tr
+            td= h.timestamp
+            td= h.currency
+            td= h.price
+            td= h.amount
+            td= h.operation

@@ -30,6 +30,12 @@ div.page-content
     span
       | 绑定交易账户
   div.content-body
+    - if @user.account
+      | 当前已绑定账号：
+      = @user.account.account_number
+    - else
+      | 当前未绑定帐号：
+    p
     == form_tag traders_bind_account_path :id => @my_id, method: 'post' do
       = hidden_field_tag :user_type, value: :trader
       = label :trade_account, '交易账户名'

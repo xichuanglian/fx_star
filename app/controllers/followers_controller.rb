@@ -43,6 +43,7 @@ class FollowersController < ApplicationController
 
   def new
     @follower = flash[:new_follower]
+    render :layout => 'application'
   end
 
   def create

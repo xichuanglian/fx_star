@@ -5,8 +5,8 @@ div.page-content
   div.content-body
     - if flash[:info]
       = flash[:info]
-    == form_tag followers_modify_password_path(@user), method: 'post' do
-      = hidden_field_tag :user_type, value: :follower
+    == form_tag traders_modify_password_path :id => @my_id, method: 'post' do
+      = hidden_field_tag :user_type, value: :trader
       br
       = label :password, '原始密码'
       br
@@ -30,8 +30,8 @@ div.page-content
     span
       | 绑定交易账户
   div.content-body
-    == form_tag followers_bind_account_path(@user), method: 'post' do
-      = hidden_field_tag :user_type, value: :follower
+    == form_tag traders_bind_account_path :id => @my_id, method: 'post' do
+      = hidden_field_tag :user_type, value: :trader
       = label :trade_account, '交易账户名'
       br
       = text_field :trade_account, :account

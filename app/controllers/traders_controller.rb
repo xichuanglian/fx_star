@@ -4,7 +4,8 @@ require 'controller_modules/create_user_module'
 
 class TradersController < ApplicationController
   include ControllerModules::CreateUserModule
-  before_action :require_login, only: [:index]
+  before_action :require_login, only: [:index, :settings,
+                                       :modify_password, :bind_account]
   layout "trader"
 
   def index
@@ -76,6 +77,41 @@ class TradersController < ApplicationController
         :profit => account_info.profit}
     end
     @traders.sort! {|t1, t2| t2[:profit] <=> t1[:profit]}
+  end
+
+  def settings
+    @my_id = session[:user_info][:user_id]
+  end
+
+  def modify_password
+    unless Trader.verify(@user.user_name,
+                           Digest::MD5.hexdigest(params[:password][:original]),
+                           Trader)
+      flash[:field_error] ||= Hash.new
+      flash[:field_error][:original] = "原始密码错误！"
+    else
+      verify_password params[:password][:password], params[:password][:confirmation]
+    end
+
+    unless flash[:field_error]
+      @user.password = Digest::MD5.hexdigest params[:password][:password]
+      @user.save!
+    end
+    flash[:info] = "密码修改成功！"
+    redirect_to traders_settings_page_path(@user)
+  end
+
+  def bind_account
+    account = @user.account
+    unless account
+      account = Account.new
+      @user.account = account
+      @user.save!
+    end
+    account.account_number = params[:trade_account][:account]
+    account.password = params[:trade_account][:password]
+    account.save!
+    redirect_to traders_settings_page_path(@user)
   end
 
   private

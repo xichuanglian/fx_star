@@ -16,7 +16,7 @@ class User
   end
 
   def self.verify user_name, password, user_type
-    if user_typeb.where(:user_name => user_name).exists?
+    if user_type.where(:user_name => user_name).exists?
       user_found = user_type.find_by(:user_name => user_name)
       if user_found and user_found.password == password
         return user_found

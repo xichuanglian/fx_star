@@ -17,6 +17,9 @@ FxStar::Application.routes.draw do
   get  '/traders/:id/index' => 'traders#index', as: :traders_index
   get  '/traders/signup' => 'traders#new', as: :traders_new
   post '/traders/create' => 'traders#create', as: :traders_create
+  get  '/traders/:id/settings' => 'traders#settings', as: :traders_settings_page
+  post '/traders/:id/modify_password' => 'traders#modify_password', as: :traders_modify_password
+  post '/traders/:id/bind_account' => 'traders#bind_account', as: :traders_bind_account
 
   #for follower
   post '/followers/:id/view_traders/:trader_id/create_followship' => 'followships#create', as: :followships_create

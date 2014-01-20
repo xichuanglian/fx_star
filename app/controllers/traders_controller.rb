@@ -34,6 +34,7 @@ class TradersController < ApplicationController
 
   def new
     @trader = flash[:new_trader]
+    render :layout => 'application'
   end
 
   def create

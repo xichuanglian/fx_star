@@ -43,6 +43,10 @@ group :development, :test do
   gem 'mongoid-rspec', github: 'evansagge/mongoid-rspec'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # Use Slim to render template
 gem 'slim-rails'
 

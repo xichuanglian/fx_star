@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-require 'ruby-debug'
 require 'controller_modules/create_user_module'
 
 class TradersController < ApplicationController
@@ -13,7 +12,6 @@ class TradersController < ApplicationController
 
     # 页面左栏信息
     @number_follow_me = Followship.where(:trader_id => my_id).count
-    #debugger
 
     who_am_i = Trader.find my_id
     if who_am_i.account

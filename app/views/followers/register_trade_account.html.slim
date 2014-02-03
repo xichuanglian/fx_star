@@ -1,0 +1,35 @@
+div.page-content
+  div.title
+    span
+      | 注册交易账户
+  div.content-body
+    - if flash[:info]
+      = flash[:info]
+    == form_tag followers_create_trade_account_path(@user), method: 'post' do
+      = hidden_field_tag :user_type, value: :follower
+      br
+      = label :name, '姓名'
+      br
+      = text_field :name, :name
+      br
+      = label :identity_number, '身份证号'
+      br
+      = text_field :identity_number, :identity_number
+      br
+      = label :image, '身份证扫描件'
+      br
+      = file_field :post_image, :image, :multiple => true
+      br
+      = label :email, '电子邮箱'
+      br
+      = email_field :email, :email
+      br
+      = label :password, '密码'
+      br
+      = password_field :password, :password
+      br
+      = label :password, '确认密码'
+      br
+      = password_field :password, :confirmation
+      br
+      = submit_tag "提交注册信息"

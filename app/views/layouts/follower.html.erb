@@ -5,6 +5,7 @@
   <li><%= link_to '历史记录', followers_history_path(@user)%></li>
   <li><%= link_to '排行榜', followers_best_traders_path%></li>
   <li class="float-right"><%= link_to '设置', followers_settings_page_path(@user) %></li>
+  <li class="float-right"><%= link_to '注册交易账户', followers_register_trade_account_page_path(@user) %></li>
 </ul>
 <% end %>
 <%= render template: "layouts/application" %>

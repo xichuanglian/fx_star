@@ -5,7 +5,7 @@ class FollowersController < ApplicationController
   include ControllerModules::CreateUserModule
   before_action :require_login, only: [:index, :best_traders, :settings,
                                        :modify_password, :bind_account,
-                                       :history, :followship]
+                                       :history, :followship, :register_trade_account]
   layout 'follower'
 
   def index
@@ -129,6 +129,10 @@ class FollowersController < ApplicationController
         :since => f.since
       }
     end
+  end
+
+  def register_trade_account
+
   end
 
   private

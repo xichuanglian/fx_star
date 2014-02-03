@@ -53,6 +53,9 @@ gem 'slim-rails'
 # Use mongoid
 gem 'mongoid', github: 'mongoid/mongoid'
 
+gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
+gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

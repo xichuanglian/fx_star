@@ -14,7 +14,7 @@ FxStar::Application.routes.draw do
   get  '/followers/:id/followship' => 'followers#followship', as: :followers_followship
   get  '/followers/:id/history' => 'followers#history', as: :followers_history
   get  '/followers/:id/register_trade_account' => 'followers#register_trade_account', as: :followers_register_trade_account_page
-  post '/followers/:id/create_trade_account' => 'followers#mcreate_trade_account', as: :followers_create_trade_account
+  post '/followers/:id/create_trade_account' => 'followers#create_trade_account', as: :followers_create_trade_account
 
   get  '/traders/:id/index' => 'traders#index', as: :traders_index
   get  '/traders/signup' => 'traders#new', as: :traders_new

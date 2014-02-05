@@ -16,6 +16,8 @@ FxStar::Application.routes.draw do
   get  '/followers/:id/register_trade_account' => 'followers#register_trade_account', as: :followers_register_trade_account_page
   post '/followers/:id/create_trade_account' => 'followers#create_trade_account', as: :followers_create_trade_account
 
+  get  '/uploads/grid/*path' => 'gridfs#serve'
+
   get  '/traders/:id/index' => 'traders#index', as: :traders_index
   get  '/traders/signup' => 'traders#new', as: :traders_new
   post '/traders/create' => 'traders#create', as: :traders_create

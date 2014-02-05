@@ -3,9 +3,15 @@ div.page-content
     span
       | 注册交易账户
   div.content-body
+    p
+      = @user.avatar.url
+    p
+      = @user.avatar.current_path
+    p
+      = image_tag(@user.avatar.url)
     - if flash[:info]
       = flash[:info]
-    == form_tag followers_create_trade_account_path(@user), method: 'post' do
+    == form_tag followers_create_trade_account_path(@user), method: 'post', multipart: true do
       = hidden_field_tag :user_type, value: :follower
       br
       = label :name, '姓名'
@@ -16,9 +22,9 @@ div.page-content
       br
       = text_field :identity_number, :identity_number
       br
-      = label :image, '身份证扫描件'
+      = label :post_image, '身份证扫描件'
       br
-      = file_field :post_image, :image, :multiple => true
+      = file_field :post_image, :image
       br
       = label :email, '电子邮箱'
       br

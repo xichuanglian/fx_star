@@ -7,7 +7,7 @@ class FollowersController < ApplicationController
   before_action :require_login, only: [:index, :best_traders, :settings,
                                        :modify_password, :bind_account,
                                        :history, :followship, :register_trade_account,
-                                       :create_trade_account]
+                                       :avatar, :create_trade_account]
   layout 'follower'
 
   def index
@@ -138,12 +138,9 @@ class FollowersController < ApplicationController
   end
 
   def create_trade_account
-    #how to get the file uploaded?
     uploaded_io = params[:post_image][:image]
-    debugger
-    @user.avatar =File.open(balabalabalabala)
+    @user.avatar = uploaded_io
     @user.save!
-
     redirect_to followers_register_trade_account_page_path
   end
 

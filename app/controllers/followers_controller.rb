@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+require 'ruby-debug'
 require 'controller_modules/create_user_module'
 
 class FollowersController < ApplicationController
@@ -137,8 +138,13 @@ class FollowersController < ApplicationController
   end
 
   def create_trade_account
+    #how to get the file uploaded?
+    uploaded_io = params[:post_image][:image]
+    debugger
+    @user.avatar =File.open(balabalabalabala)
+    @user.save!
 
-    redirect_to followers_register_trade_account_page
+    redirect_to followers_register_trade_account_page_path
   end
 
   private

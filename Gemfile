@@ -56,6 +56,9 @@ gem 'mongoid', github: 'mongoid/mongoid'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid'
 
+gem 'rmagick', '2.13.2'
+gem "mini_magick"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

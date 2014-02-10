@@ -1,10 +1,12 @@
 # encoding: utf-8
+require 'carrierwave/processing/mini_magick'
+require 'carrierwave/processing/rmagick'
 
 class IdcardUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -31,17 +33,19 @@ class IdcardUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  #process :resize_to_fit => [200, 200]
+  process :resize_to_fit => [600, 500]
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :scale => [50, 50]
-  # end
+  #version :thumb do
+  #  process :scale => [50, 50]
+  #end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

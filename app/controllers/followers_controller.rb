@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'ruby-debug'
 require 'controller_modules/create_user_module'
+#require 'carrierwave/processing/rmagick'
 
 class FollowersController < ApplicationController
   include ControllerModules::CreateUserModule
@@ -152,8 +153,8 @@ class FollowersController < ApplicationController
 
     # id card photo
     if params[:post_image]
-      uploaded_io = params[:post_image][:image]
-      @user.idcard = uploaded_io
+      uploaded_image = params[:post_image][:image]
+      @user.idcard = uploaded_image
     end
 
     @user.save!

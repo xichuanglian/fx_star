@@ -3,14 +3,30 @@ div.page-content
     span
       | 注册交易账户
   div.content-body
-    p
-      = @user.avatar.url
-    p
-      = @user.avatar.current_path
-    p
-      = image_tag(@user.avatar.url)
     - if flash[:info]
       = flash[:info]
+    - if flash[:field_error]
+      = flash[:field_error]
+    p
+    | 已提交的身份证扫描件
+    p
+      = @user.idcard.url
+    p
+      = @user.idcard.current_path
+    p
+      = image_tag(@user.idcard.url)
+    | 账户名
+    = @user.trade_account_name
+    br
+    | 身份证号
+    = @user.trade_account_identity_number
+    br
+    | 邮箱
+    = @user.trade_account_email
+    br
+    | 密码
+    = @user.trade_account_password
+
     == form_tag followers_create_trade_account_path(@user), method: 'post', multipart: true do
       = hidden_field_tag :user_type, value: :follower
       br

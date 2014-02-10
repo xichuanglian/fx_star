@@ -1,5 +1,10 @@
 class Follower < User
   has_many :followships
 
-  mount_uploader :avatar, AvatarUploader
+  field :trade_account_name, type: String
+  field :trade_account_email, type: String
+  field :trade_account_password, type: String
+  field :trade_account_identity_number, type: String
+
+  mount_uploader :idcard, IdcardUploader
 end

@@ -7,7 +7,7 @@ class FollowersController < ApplicationController
   before_action :require_login, only: [:index, :best_traders, :settings,
                                        :modify_password, :bind_account,
                                        :history, :followship, :register_trade_account,
-                                       :avatar, :create_trade_account]
+                                       :create_trade_account]
   layout 'follower'
 
   def index
@@ -138,9 +138,26 @@ class FollowersController < ApplicationController
   end
 
   def create_trade_account
-    uploaded_io = params[:post_image][:image]
-    @user.avatar = uploaded_io
+    if params[:password][:password] != params[:password][:confirmation]
+      flash[:field_error] = '两次输入的密码不一致！'
+      redirect_to followers_register_trade_account_page_path
+      return
+    end
+
+    # text information
+    @user.trade_account_name = params[:name][:name]
+    @user.trade_account_identity_number = params[:identity_number][:identity_number]
+    @user.trade_account_email = params[:email][:email]
+    @user.trade_account_password = params[:password][:password]
+
+    # id card photo
+    if params[:post_image]
+      uploaded_io = params[:post_image][:image]
+      @user.idcard = uploaded_io
+    end
+
     @user.save!
+    flash[:info] = '账户信息提交成功'
     redirect_to followers_register_trade_account_page_path
   end
 

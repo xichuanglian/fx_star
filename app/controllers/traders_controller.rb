@@ -64,6 +64,7 @@ class TradersController < ApplicationController
 
   def show_for_follower
     @trader = Trader.find(params[:trader_id])
+    render :layout => 'application'
   end
 
   def ranking_list

@@ -5,8 +5,9 @@ class Trader < User
     @best_traders = []
 
     self.each do |t|
-      next unless t.account.account_status_records.first
+      next unless t.account
       account_info = t.account.account_status_records.first
+      next unless account_info
       @best_traders << {:user_name => t.user_name,
                        :equity => account_info.equity,
                        :profit => account_info.profit,

@@ -1,4 +1,6 @@
 h1 策略提供者：#{@trader.user_name}
 
-
-= button_to '我要跟单', followships_create_path(:trader_id => @trader.id), :method => :post, :confirm => "确定要跟随#{@trader.user_name}?"
+- if @no_followship
+    = button_to '我要跟单', followships_create_path(:trader_id => @trader.id), :method => :post, :confirm => "确定要跟随#{@trader.user_name}?"
+- else
+    | 您已跟单

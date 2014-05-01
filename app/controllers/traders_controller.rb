@@ -64,6 +64,10 @@ class TradersController < ApplicationController
 
   def show_for_follower
     @trader = Trader.find(params[:trader_id])
+
+    follower_id = session[:user_info][:user_id]
+
+    @no_followship = !(Followship.where(:follower_id => follower_id, :trader_id => params[:trader_id]).exists?)
     render :layout => 'application'
   end
 

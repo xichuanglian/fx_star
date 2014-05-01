@@ -20,3 +20,33 @@ div.page-content
             td= h.price
             td= h.amount
             td= h.operation
+
+    table
+          thead
+            tr
+              th fx_account_id
+              th amount
+              th operation
+              th gross_pl
+              th commission
+              th open_rate
+              th open_quote_id
+              th open_time
+              th close_rate
+              th close_time
+              th value_date
+          tbody
+            - @closed_trade_records.each do |h|
+              tr
+                td= h.fx_account_id
+                td= h.amount
+                th= h.operation
+                th= h.gross_pl
+                th= h.commission
+                th= h.open_rate
+                th= h.open_quote_id
+                th= h.open_time
+                th= h.close_rate
+                th= h.close_time
+                th= h.value_date
+

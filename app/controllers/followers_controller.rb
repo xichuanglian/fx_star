@@ -115,11 +115,17 @@ class FollowersController < ApplicationController
   end
 
   def history
-    unless @user.account
+    if not @user.account
       flash[:error] = "您尚未绑定券商账户！"
       @records = []
-    else
-      @records = @user.account.trade_records
+      @closed_trade_records = []
+    elsif @user.account
+      if @user.account.trade_records
+        @records = @user.account.trade_records
+      end
+      if @user.account.closed_trade_records
+        @closed_trade_records = @user.account.closed_trade_records
+      end
     end
   end
 

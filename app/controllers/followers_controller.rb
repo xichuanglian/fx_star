@@ -27,7 +27,7 @@ class FollowersController < ApplicationController
 
     # 页面左栏信息
     who_am_i = Follower.find @my_id
-    if who_am_i.account && who_am_i.account.account_status_records
+    if who_am_i.account and who_am_i.account.account_status_records
       my_account_info = who_am_i.account.account_status_records.first
       @my_follow_date = '需要计算'
       @my_profit_rate = '需要计算'

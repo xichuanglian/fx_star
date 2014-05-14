@@ -1,0 +1,46 @@
+.login{
+	color:#2d4b75;
+}
+.banner-color{
+	background-color:rgb(4,16,38);
+}
+.tab-ul{
+	text-align: center;list-style-type: none;
+}
+.navbar{
+	text-align: center
+}
+.navbar ul {
+	display: inline-block;
+}
+.navbar li {
+	float: left;
+}
+.navbar li + li {
+	margin-left: 20px;
+}
+.user-button{
+	margin-top: 5px;
+	margin-right: 0px;
+	background-color: #b8c9d0;
+}
+.user-button a {
+	margin: 1px;
+	color:#001532;
+	font-size: 14pt;
+}
+.frame{
+	background: white;
+	height:200px;
+}
+.space{
+	margin: 15px;
+}
+.unknown-block{
+	margin: 15px;
+	background-color: #c7d6db;
+	height:160px;
+}
+.foot{
+	margin-top: 10px;
+}
